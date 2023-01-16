@@ -8,7 +8,7 @@ const Header = ({ onHandlerCart, user}) => {
     return (
         <div className="header-menu">
             <div className="header-menu-logo">
-            <Link to='/' className='link-logo'><h2 className="header-logo">S.H</h2></Link>
+            <Link to='/' className='link-logo'><h3 className="header-logo">SoccerUy</h3></Link>
                 
             </div>
             <div className="header-menu-cart">
