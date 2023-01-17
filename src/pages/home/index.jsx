@@ -3,7 +3,7 @@ import './styles.css';
 import { useNavigate } from 'react-router-dom';
 import { PRODUCTS } from '../../constants/data/products';
 import { Card, Progress} from '../../components'
-import { getFirestore, doc, getDoc, getDocs } from 'firebase/firestore'
+import { getFirestore, doc, getDoc, getDocs, collection } from 'firebase/firestore'
 
 
 const Home = () => {
@@ -44,16 +44,12 @@ const Home = () => {
 
 useEffect(() => {
   const db = getFirestore ();
-  const product = doc(db, 'products', 'ZaZHMmPplPlXcRoulUai' ,);
-  getDoc(product)
+  const products = collection(db, 'products');
+  getDocs(products)
     .then((snapshot) => {
-      if(snapshot.exists()) {
-        console.log(snapshot.data())
-      }
+      const result = snapshot.docs.map((doc) => (doc.data()))
+      console.log ('result', result)
     })
-    .catch((error) => {
-      console.log(error)
-    });
     setTimeout(() => {
 
     }, 2000);

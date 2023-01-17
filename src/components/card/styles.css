@@ -93,7 +93,7 @@
 }
 
 .card-button-minus:disabled {
-    background-color: #eee;
+    background-color: rgb(238, 238, 238);
     color: #ffffff;
     cursor: not-allowed;
 }
