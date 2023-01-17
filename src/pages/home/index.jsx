@@ -3,6 +3,7 @@ import './styles.css';
 import { useNavigate } from 'react-router-dom';
 import { PRODUCTS } from '../../constants/data/products';
 import { Card, Progress} from '../../components'
+import { getFirestore, doc, getDoc, getDocs } from 'firebase/firestore'
 
 
 const Home = () => {
@@ -41,10 +42,33 @@ const Home = () => {
     }
   }, [])
 
+useEffect(() => {
+  const db = getFirestore ();
+  const product = doc(db, 'products', 'ZaZHMmPplPlXcRoulUai' ,);
+  getDoc(product)
+    .then((snapshot) => {
+      if(snapshot.exists()) {
+        console.log(snapshot.data())
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+    });
+    setTimeout(() => {
+
+    }, 2000);
+  }, [] );
+
+
+
+
+
+
+
   return (
     <div className="home-container">
       <Progress scroll={scrollPosition}/>
-      <h1>Productos destacados</h1>
+      <h1>Lo mas vendido</h1>
         <div className='products-container'>
         {PRODUCTS.map((product) => (
           <Card product={product} key={product.id} onSelect={onHandlerSelect}/>
